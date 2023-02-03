@@ -6,8 +6,8 @@
 
 ![license](https://img.shields.io/github/license/sankettangade/AutoSE-HW3-Cluster)
 [![DOI](https://zenodo.org/badge/595836561.svg)](https://zenodo.org/badge/latestdoi/595836561)
-<!-- [![codecov](https://codecov.io/gh/sankettangade/AutoSE-HW3-Cluster/branch/main/graph/badge.svg?token=)](https://codecov.io/gh/sankettangade/AutoSE-HW3-Cluster)<br/> -->
-<!-- ![Test Cases](https://img.shields.io/github/actions/workflow/status/sankettangade/AutoSE-HW3-Cluster/tests.yml?label=Test%20Cases) -->
+[![codecov](https://codecov.io/gh/sankettangade/AutoSE-HW3-Cluster/branch/main/graph/badge.svg?token=)](https://codecov.io/gh/sankettangade/AutoSE-HW3-Cluster)<br/>
+![Test Cases](https://img.shields.io/github/actions/workflow/status/sankettangade/AutoSE-HW3-Cluster/tests.yml?label=Test%20Cases)
 ![Repo Size](https://img.shields.io/github/repo-size/sankettangade/AutoSE-HW3-Cluster)
 ![Issues](https://img.shields.io/github/issues-closed-raw/sankettangade/AutoSE-HW3-Cluster?color=yellow)
 ![Release](https://img.shields.io/github/v/release/sankettangade/AutoSE-HW3-Cluster?color=green)
