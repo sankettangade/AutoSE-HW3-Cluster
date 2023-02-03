@@ -12,7 +12,7 @@ OPTIONS:
   -g  --go      start-up action        = data
   -h  --help    show help              = false
   -m  --min     stop clusters at N^min = .5
-  -p  --p       distance coefficient   = 2
+  -p  --p       distance coefficient    = 2
   -s  --seed    random number seed     = 937162211
   -S  --Sample  sampling data size     = 512
 ACTIONS:
@@ -20,4 +20,4 @@ ACTIONS:
 
 egs = dict()
 
-the =  dict()
+options =  dict()

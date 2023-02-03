@@ -1,6 +1,6 @@
 import sys
 
-sys.path.append("./src")
+sys.path.append("../src")
 
 from main import *
 from utils import *
@@ -43,7 +43,7 @@ def test_data():
         len(dataObj.cols.x) == 4
 
 def test_optimize():
-    data = DATA(the['file'])
+    data = DATA(options['file'])
     show(data.sway(),'mid',data.cols.y,1)
 
 def test_around():
@@ -58,32 +58,31 @@ def test_clone():
     data2Obj = data1Obj.clone(data1Obj.rows)
     return (data1Obj.cols.x[1].at == data2Obj.cols.x[1].at) and \
         (data1Obj.cols.y[1].w == data2Obj.cols.y[1].w) and \
-        (len(data1Obj.cols.x) == len(data2Obj.cols.x) and
+        (len(data1Obj.cols.x) == len(data2Obj.cols.x)) and \
          (len(data1Obj.rows) == len(data2Obj.rows))
 
 def test_half():
-    data = DATA(the['file'])
-    right, left, A, B, c, mid = data.half()
+    data = DATA(options['file'])
+    left, right, A, B, mid, c = data.half()
     print(len(left), len(right), len(data.rows))
     print(A.cells, c)
     print(mid.cells)
     print(B.cells)
 
 def test_cluster():
-    data = DATA(the['file'])
-    show(data.cluster(), 'mid', data.cols.y, 1)
+    data = DATA(options['file'])
+    show(data.cluster(), "mid", data.cols.y, 1)
 
 
 if __name__ == '__main__':
-    eg('the', 'show settings', test_the)
-    eg('sym', 'check syms', test_sym)
-    eg('num', 'check nums', test_num)
-    eg('csv', 'read from csv', test_csv)
+    eg('around', 'sorting nearest neighbors', test_around)
+    eg('clone', 'duplicate structure', test_clone)
+    eg('cluster', 'N-level bi-clustering', test_cluster)
     eg('data', 'read DATA csv', test_data)
+    eg('half', '1-level bi-clustering', test_half)
+    eg('num', 'check nums', test_num)
+    eg('optimize', 'semi-supervised optimization', test_optimize)
+    eg('sym', 'check syms', test_sym)
+    eg('the', 'show settings', test_the)
     eg('stats', 'stats from DATA', test_stats)
-    eg('cluster', 'N-level bi-clustering', test_cluster())
-    eg('clone', 'duplicate structure', test_clone())
-    eg('half', '1-level bi-clustering', test_half())
-    eg('around','sorting nearest neighbors', test_around())
-    eg('optimize', 'semi-supervised optimization', test_optimize())
     main(options, help, egs)
