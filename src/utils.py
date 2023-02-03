@@ -130,3 +130,19 @@ def csv(filename, fun):
             fun(t)
         else:
             return f.close()
+
+def oo(t):
+    o(t, False)
+
+# Method to format string values
+def o(t, is_keys = True):
+    if type(t) is not dict:
+        return str(t)
+    def fun(k,v):
+        if str(k).find('^_') == -1:
+            return format(':{} {}', o(k), o(v))
+
+    if len(t) > 0 and not is_keys:
+        return '{' + ' '.join(str(content) for content in map(t, o)) + '}'
+    else:
+        return '{' + ' '.join(str(content) for content in kap(t, fun)) + '}'
