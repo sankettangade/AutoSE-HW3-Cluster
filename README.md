@@ -14,8 +14,8 @@
 ![Contributors](https://img.shields.io/github/contributors/sankettangade/AutoSE-HW3-Cluster?color=cyan)
 ![PR](https://img.shields.io/github/issues-pr/sankettangade/AutoSE-HW3-Cluster?color=red)
 ![PR Closed](https://img.shields.io/github/issues-pr-closed-raw/sankettangade/AutoSE-HW3-Cluster?color=red)
-<!-- ![Pylint](https://img.shields.io/github/actions/workflow/status/sankettangade/AutoSE-HW3-Cluster/pylint.yml?label=PyLint) -->
-<!-- ![Python Style Checker](https://img.shields.io/github/actions/workflow/status/sankettangade/AutoSE-HW3-Cluster/style_checker.yml?label=Python%20Style%20Checker) -->
+![Pylint](https://img.shields.io/github/actions/workflow/status/sankettangade/AutoSE-HW3-Cluster/pylint.yml?label=PyLint)
+![Python Style Checker](https://img.shields.io/github/actions/workflow/status/sankettangade/AutoSE-HW3-Cluster/style_checker.yml?label=Python%20Style%20Checker)
 ![Commit Activity](https://img.shields.io/github/commit-activity/w/sankettangade/AutoSE-HW3-Cluster?color=blue)
 
 </div>
