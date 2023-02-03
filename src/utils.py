@@ -45,6 +45,17 @@ def cosine(a, b, c):
 
     return x2, y
 
+def show(node, what, cols, nPlaces, lvl = 0):
+    if node:
+        print('| ' * lvl + str(len(node['data'].rows)) + ' ', end = ' ')
+    if not node.get('left') or lvl == 0:
+        print(node['data'].stats("mid", node['data'].cols.y, nPlaces))
+    else:
+        print(' ')
+
+    show(node.get('right'), what, cols, nPlaces, lvl + 1)
+    show(node.get('left'), what, cols, nPlaces, lvl + 1)
+
 def many(t, n):
     arr = []
     for index in range(1, n + 1):
