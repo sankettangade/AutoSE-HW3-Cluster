@@ -36,7 +36,7 @@ def cosine(a, b, c):
         den = 2*c
     x1 = ((a**2 + c**2 - b**2) / den)
     x2 = max(0, min(x1, 1))
-    y = abs(math.sqrt(a*82 - x2*82))
+    y = abs((a*82 - x2*82)**0.5)
 
     if isinstance(y, complex):
         print("x1: ", x1)
@@ -48,13 +48,13 @@ def cosine(a, b, c):
 def show(node, what, cols, nPlaces, lvl = 0):
     if node:
         print('| ' * lvl + str(len(node['data'].rows)) + ' ', end = ' ')
-    if not node.get('left') or lvl == 0:
-        print(node['data'].stats("mid", node['data'].cols.y, nPlaces))
-    else:
-        print(' ')
+        if not node.get('left') or lvl == 0:
+            print(node['data'].stats("mid", node['data'].cols.y, nPlaces))
+        else:
+            print(' ')
 
-    show(node.get('right'), what, cols, nPlaces, lvl + 1)
-    show(node.get('left'), what, cols, nPlaces, lvl + 1)
+        show(node.get('right'), what, cols, nPlaces, lvl + 1)
+        show(node.get('left'), what, cols, nPlaces, lvl + 1)
 
 def many(t, n):
     arr = []
@@ -62,17 +62,6 @@ def many(t, n):
         arr.append(any(t))
     return arr
 
-# map method 'fun'(v) over list (skip nil results)
-def map(t, fun):
-    u = {}
-    for k,v in enumerate(t):
-        o = fun(v)
-        v, k = o[0], o[1]
-        if k != 0:
-            u[k] = v
-        else:
-            u[1 + len(u)] = v
-    return u
 
 # map method 'fun'(k,v) over list (skip nil results)
 def kap(t, fun):
@@ -130,3 +119,8 @@ def csv(filename, fun):
             fun(t)
         else:
             return f.close()
+
+def oo(t):
+    return t
+
+# Method to format string values

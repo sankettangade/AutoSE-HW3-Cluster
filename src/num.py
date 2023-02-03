@@ -8,8 +8,8 @@ class Num:
         self.n = 0
         self.mu = 0
         self.m2 = 0
-        self.hi = math.inf
-        self.lo = -math.inf
+        self.lo = float('inf')
+        self.hi = float('-inf')
 
         if at:
             self.at = at
@@ -64,7 +64,9 @@ class Num:
         else:
             return (n - self.lo) / (self.hi - self.lo + 1e-32)
 
+
     def dist(self, n1, n2):
+
         if n1 == "?" and n2 == "?":
             return 1
         n1 = self.norm(n1)
@@ -79,4 +81,5 @@ class Num:
                 n2 = 1
             else:
                 n2 = 0
+
         return abs(n1 - n2)

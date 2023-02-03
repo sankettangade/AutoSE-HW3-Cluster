@@ -9,6 +9,7 @@ def cli(options):
     '''
     args = sys.argv[1:]
     for key, value in options.items():
+
         for n, x in enumerate(args):
             if x == '-'+ key[0] or x == '--'+ key:
                   value = "false" if value == "true" else "true" if value == "false" else args[n+1]
@@ -35,6 +36,7 @@ def main(options, help, funs):
         print(help)
     else:
         for what, fun in funs.items():
+            # print("keywhat,fun)
             if options['go'] == 'all' or options['go'] == what:
                 print("--")
                 for k,v in saved.items():
