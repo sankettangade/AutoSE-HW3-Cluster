@@ -29,6 +29,28 @@ def rnd(n, n_places):
     mult = math.pow(10, n_places)
     return math.floor(n * mult + 0.5)/mult
 
+def cosine(a, b, c):
+    if c == 0:
+        den = 1
+    else:
+        den = 2*c
+    x1 = ((a**2 + c**2 - b**2) / den)
+    x2 = max(0, min(x1, 1))
+    y = abs(math.sqrt(a*82 - x2*82))
+
+    if isinstance(y, complex):
+        print("x1: ", x1)
+        print("x2: ", x2)
+        print("a: ", a)
+
+    return x2, y
+
+def many(t, n):
+    arr = []
+    for index in range(1, n + 1):
+        arr.append(any(t))
+    return arr
+
 # map method 'fun'(v) over list (skip nil results)
 def map(t, fun):
     u = {}
@@ -77,22 +99,8 @@ def coerce(s):
     except Exception as exception:
         print("Coerce Error", exception)
 
-# Method to print values
-def oo(t):
-    o(t, False)
-
-# Method to format string values
-def o(t, is_keys = True):
-    if type(t) is not dict:
-        return str(t)
-    def fun(k,v):
-        if str(k).find('^_') == -1:
-            return format(':{} {}', o(k), o(v))
-
-    if len(t) > 0 and not is_keys:
-        return '{' + ' '.join(str(content) for content in map(t, o)) + '}'
-    else:
-        return '{' + ' '.join(str(content) for content in kap(t, fun)) + '}'
+def any(t):
+    return t[rint(0, len(t) - 1)]
 
 # Method to map values for test cases
 def eg(key, str, fun):
