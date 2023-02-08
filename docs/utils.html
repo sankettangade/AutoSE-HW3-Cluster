@@ -64,7 +64,7 @@ def cosine(a, b, c):
         den = 2*c
     x1 = ((a**2 + c**2 - b**2) / den)
     x2 = max(0, min(x1, 1))
-    y = abs(math.sqrt(a*82 - x2*82))
+    y = abs((a*82 - x2*82)**0.5)
 
     if isinstance(y, complex):
         print(&#34;x1: &#34;, x1)
@@ -76,13 +76,13 @@ def cosine(a, b, c):
 def show(node, what, cols, nPlaces, lvl = 0):
     if node:
         print(&#39;| &#39; * lvl + str(len(node[&#39;data&#39;].rows)) + &#39; &#39;, end = &#39; &#39;)
-    if not node.get(&#39;left&#39;) or lvl == 0:
-        print(node[&#39;data&#39;].stats(&#34;mid&#34;, node[&#39;data&#39;].cols.y, nPlaces))
-    else:
-        print(&#39; &#39;)
+        if not node.get(&#39;left&#39;) or lvl == 0:
+            print(node[&#39;data&#39;].stats(&#34;mid&#34;, node[&#39;data&#39;].cols.y, nPlaces))
+        else:
+            print(&#39; &#39;)
 
-    show(node.get(&#39;right&#39;), what, cols, nPlaces, lvl + 1)
-    show(node.get(&#39;left&#39;), what, cols, nPlaces, lvl + 1)
+        show(node.get(&#39;right&#39;), what, cols, nPlaces, lvl + 1)
+        show(node.get(&#39;left&#39;), what, cols, nPlaces, lvl + 1)
 
 def many(t, n):
     arr = []
@@ -90,17 +90,6 @@ def many(t, n):
         arr.append(any(t))
     return arr
 
-# map method &#39;fun&#39;(v) over list (skip nil results)
-def map(t, fun):
-    u = {}
-    for k,v in enumerate(t):
-        o = fun(v)
-        v, k = o[0], o[1]
-        if k != 0:
-            u[k] = v
-        else:
-            u[1 + len(u)] = v
-    return u
 
 # map method &#39;fun&#39;(k,v) over list (skip nil results)
 def kap(t, fun):
@@ -157,7 +146,12 @@ def csv(filename, fun):
                 t.append(coerce(s1))
             fun(t)
         else:
-            return f.close()</code></pre>
+            return f.close()
+
+def oo(t):
+    return t
+
+# Method to format string values</code></pre>
 </details>
 </section>
 <section>
@@ -224,7 +218,7 @@ def csv(filename, fun):
         den = 2*c
     x1 = ((a**2 + c**2 - b**2) / den)
     x2 = max(0, min(x1, 1))
-    y = abs(math.sqrt(a*82 - x2*82))
+    y = abs((a*82 - x2*82)**0.5)
 
     if isinstance(y, complex):
         print(&#34;x1: &#34;, x1)
@@ -318,8 +312,8 @@ def csv(filename, fun):
     return arr</code></pre>
 </details>
 </dd>
-<dt id="utils.map"><code class="name flex">
-<span>def <span class="ident">map</span></span>(<span>t, fun)</span>
+<dt id="utils.oo"><code class="name flex">
+<span>def <span class="ident">oo</span></span>(<span>t)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -327,16 +321,8 @@ def csv(filename, fun):
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def map(t, fun):
-    u = {}
-    for k,v in enumerate(t):
-        o = fun(v)
-        v, k = o[0], o[1]
-        if k != 0:
-            u[k] = v
-        else:
-            u[1 + len(u)] = v
-    return u</code></pre>
+<pre><code class="python">def oo(t):
+    return t</code></pre>
 </details>
 </dd>
 <dt id="utils.rand"><code class="name flex">
@@ -399,13 +385,13 @@ def csv(filename, fun):
 <pre><code class="python">def show(node, what, cols, nPlaces, lvl = 0):
     if node:
         print(&#39;| &#39; * lvl + str(len(node[&#39;data&#39;].rows)) + &#39; &#39;, end = &#39; &#39;)
-    if not node.get(&#39;left&#39;) or lvl == 0:
-        print(node[&#39;data&#39;].stats(&#34;mid&#34;, node[&#39;data&#39;].cols.y, nPlaces))
-    else:
-        print(&#39; &#39;)
+        if not node.get(&#39;left&#39;) or lvl == 0:
+            print(node[&#39;data&#39;].stats(&#34;mid&#34;, node[&#39;data&#39;].cols.y, nPlaces))
+        else:
+            print(&#39; &#39;)
 
-    show(node.get(&#39;right&#39;), what, cols, nPlaces, lvl + 1)
-    show(node.get(&#39;left&#39;), what, cols, nPlaces, lvl + 1)</code></pre>
+        show(node.get(&#39;right&#39;), what, cols, nPlaces, lvl + 1)
+        show(node.get(&#39;left&#39;), what, cols, nPlaces, lvl + 1)</code></pre>
 </details>
 </dd>
 <dt id="utils.sort"><code class="name flex">
@@ -442,7 +428,7 @@ def csv(filename, fun):
 <li><code><a title="utils.kap" href="#utils.kap">kap</a></code></li>
 <li><code><a title="utils.keys" href="#utils.keys">keys</a></code></li>
 <li><code><a title="utils.many" href="#utils.many">many</a></code></li>
-<li><code><a title="utils.map" href="#utils.map">map</a></code></li>
+<li><code><a title="utils.oo" href="#utils.oo">oo</a></code></li>
 <li><code><a title="utils.rand" href="#utils.rand">rand</a></code></li>
 <li><code><a title="utils.rint" href="#utils.rint">rint</a></code></li>
 <li><code><a title="utils.rnd" href="#utils.rnd">rnd</a></code></li>
