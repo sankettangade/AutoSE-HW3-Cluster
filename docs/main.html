@@ -37,6 +37,7 @@ def cli(options):
     &#39;&#39;&#39;
     args = sys.argv[1:]
     for key, value in options.items():
+
         for n, x in enumerate(args):
             if x == &#39;-&#39;+ key[0] or x == &#39;--&#39;+ key:
                   value = &#34;false&#34; if value == &#34;true&#34; else &#34;true&#34; if value == &#34;false&#34; else args[n+1]
@@ -63,6 +64,7 @@ def main(options, help, funs):
         print(help)
     else:
         for what, fun in funs.items():
+            # print(&#34;keywhat,fun)
             if options[&#39;go&#39;] == &#39;all&#39; or options[&#39;go&#39;] == what:
                 print(&#34;--&#34;)
                 for k,v in saved.items():
@@ -97,6 +99,7 @@ def main(options, help, funs):
     &#39;&#39;&#39;
     args = sys.argv[1:]
     for key, value in options.items():
+
         for n, x in enumerate(args):
             if x == &#39;-&#39;+ key[0] or x == &#39;--&#39;+ key:
                   value = &#34;false&#34; if value == &#34;true&#34; else &#34;true&#34; if value == &#34;false&#34; else args[n+1]
@@ -127,6 +130,7 @@ def main(options, help, funs):
         print(help)
     else:
         for what, fun in funs.items():
+            # print(&#34;keywhat,fun)
             if options[&#39;go&#39;] == &#39;all&#39; or options[&#39;go&#39;] == what:
                 print(&#34;--&#34;)
                 for k,v in saved.items():

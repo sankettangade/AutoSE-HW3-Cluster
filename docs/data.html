@@ -31,7 +31,7 @@ import math
 from utils import *
 from rows import Row
 from cols import Col
-from constants import the
+from constants import options
 
 class DATA:
     def __init__(self, src):
@@ -78,17 +78,15 @@ class DATA:
 
         for col in c:
             n +=1
-            d +=col.dist(row1.cells[col.at], row2.cells[col.at])**the[&#39;p&#39;]
+            d +=col.dist(row1.cells[col.at], row2.cells[col.at])**options[&#39;p&#39;]
 
-        return (d/n)**(1/the[&#39;p&#39;])
+        return (d/n)**(1/options[&#39;p&#39;])
 
     def around(self, row1, rows = None, cols = None):
 
+        if rows is None: rows = self.rows
         def function(row2):
             return {&#34;row&#34;: row2, &#34;dist&#34;: self.dist(row1, row2, cols)}
-        
-        if rows == None:
-            rows = self.rows
 
         mapped = map(function, rows)
         return sorted(mapped,  key=lambda x: x[&#34;dist&#34;])
@@ -109,10 +107,10 @@ class DATA:
         def project(row):
             return {&#34;row&#34;: row, &#34;dist&#34;: cosine(dist(row, A), dist(row, B), c)}
 
-        if rows == None: rows = self.rows
-        some = many(rows,the[&#39;Sample&#39;])
+        if rows is None: rows = self.rows
+        some = many(rows,options[&#39;Sample&#39;])
         A = above or any(some)
-        B = self.around(A, some)[int(the[&#39;Far&#39;] * len(rows))][&#39;row&#39;]
+        B = self.around(A, some)[int(options[&#39;Far&#39;] * len(rows))][&#39;row&#39;]
         c = dist(A, B)
         left, right, mid = [], [], None
         for n, tmp in enumerate(sorted(list(map(project, rows)), key=lambda x: x[&#34;dist&#34;])):
@@ -124,10 +122,10 @@ class DATA:
         return left, right, A, B, mid, c
 
     def cluster(self, rows = None , min = None, cols = None, above = None):
-        if rows == None: rows = self.rows
-        min  = min or len(rows)**the[&#39;min&#39;]
+        if rows is None: rows = self.rows
+        min  = min or len(rows)**options[&#39;min&#39;]
         cols = cols or self.cols.x
-        node = {&#34;data&#34; : self.clone(rows) }
+        node = {&#34;data&#34; : self.clone(rows)}
         if len(rows) &gt; 2 * min:
             left, right, node[&#39;A&#39;], node[&#39;B&#39;], node[&#39;mid&#39;], _ = self.half(rows, cols, above)
             node[&#39;left&#39;]  = self.cluster(left,  min, cols, node[&#39;A&#39;])
@@ -137,7 +135,7 @@ class DATA:
 
     def sway(self, rows = None, min = None, cols = None, above = None):
         if rows == None: rows = self.rows
-        min  = min or len(rows)**the[&#39;min&#39;]
+        min  = min or len(rows)**options[&#39;min&#39;]
         cols = cols or self.cols.x
         node = {&#34;data&#34;:self.clone(rows)}
         if len(rows) &gt; 2*min:
@@ -212,17 +210,15 @@ class DATA:
 
         for col in c:
             n +=1
-            d +=col.dist(row1.cells[col.at], row2.cells[col.at])**the[&#39;p&#39;]
+            d +=col.dist(row1.cells[col.at], row2.cells[col.at])**options[&#39;p&#39;]
 
-        return (d/n)**(1/the[&#39;p&#39;])
+        return (d/n)**(1/options[&#39;p&#39;])
 
     def around(self, row1, rows = None, cols = None):
 
+        if rows is None: rows = self.rows
         def function(row2):
             return {&#34;row&#34;: row2, &#34;dist&#34;: self.dist(row1, row2, cols)}
-        
-        if rows == None:
-            rows = self.rows
 
         mapped = map(function, rows)
         return sorted(mapped,  key=lambda x: x[&#34;dist&#34;])
@@ -243,10 +239,10 @@ class DATA:
         def project(row):
             return {&#34;row&#34;: row, &#34;dist&#34;: cosine(dist(row, A), dist(row, B), c)}
 
-        if rows == None: rows = self.rows
-        some = many(rows,the[&#39;Sample&#39;])
+        if rows is None: rows = self.rows
+        some = many(rows,options[&#39;Sample&#39;])
         A = above or any(some)
-        B = self.around(A, some)[int(the[&#39;Far&#39;] * len(rows))][&#39;row&#39;]
+        B = self.around(A, some)[int(options[&#39;Far&#39;] * len(rows))][&#39;row&#39;]
         c = dist(A, B)
         left, right, mid = [], [], None
         for n, tmp in enumerate(sorted(list(map(project, rows)), key=lambda x: x[&#34;dist&#34;])):
@@ -258,10 +254,10 @@ class DATA:
         return left, right, A, B, mid, c
 
     def cluster(self, rows = None , min = None, cols = None, above = None):
-        if rows == None: rows = self.rows
-        min  = min or len(rows)**the[&#39;min&#39;]
+        if rows is None: rows = self.rows
+        min  = min or len(rows)**options[&#39;min&#39;]
         cols = cols or self.cols.x
-        node = {&#34;data&#34; : self.clone(rows) }
+        node = {&#34;data&#34; : self.clone(rows)}
         if len(rows) &gt; 2 * min:
             left, right, node[&#39;A&#39;], node[&#39;B&#39;], node[&#39;mid&#39;], _ = self.half(rows, cols, above)
             node[&#39;left&#39;]  = self.cluster(left,  min, cols, node[&#39;A&#39;])
@@ -271,7 +267,7 @@ class DATA:
 
     def sway(self, rows = None, min = None, cols = None, above = None):
         if rows == None: rows = self.rows
-        min  = min or len(rows)**the[&#39;min&#39;]
+        min  = min or len(rows)**options[&#39;min&#39;]
         cols = cols or self.cols.x
         node = {&#34;data&#34;:self.clone(rows)}
         if len(rows) &gt; 2*min:
@@ -316,11 +312,9 @@ class DATA:
 </summary>
 <pre><code class="python">def around(self, row1, rows = None, cols = None):
 
+    if rows is None: rows = self.rows
     def function(row2):
         return {&#34;row&#34;: row2, &#34;dist&#34;: self.dist(row1, row2, cols)}
-    
-    if rows == None:
-        rows = self.rows
 
     mapped = map(function, rows)
     return sorted(mapped,  key=lambda x: x[&#34;dist&#34;])</code></pre>
@@ -371,10 +365,10 @@ class DATA:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def cluster(self, rows = None , min = None, cols = None, above = None):
-    if rows == None: rows = self.rows
-    min  = min or len(rows)**the[&#39;min&#39;]
+    if rows is None: rows = self.rows
+    min  = min or len(rows)**options[&#39;min&#39;]
     cols = cols or self.cols.x
-    node = {&#34;data&#34; : self.clone(rows) }
+    node = {&#34;data&#34; : self.clone(rows)}
     if len(rows) &gt; 2 * min:
         left, right, node[&#39;A&#39;], node[&#39;B&#39;], node[&#39;mid&#39;], _ = self.half(rows, cols, above)
         node[&#39;left&#39;]  = self.cluster(left,  min, cols, node[&#39;A&#39;])
@@ -398,9 +392,9 @@ class DATA:
 
     for col in c:
         n +=1
-        d +=col.dist(row1.cells[col.at], row2.cells[col.at])**the[&#39;p&#39;]
+        d +=col.dist(row1.cells[col.at], row2.cells[col.at])**options[&#39;p&#39;]
 
-    return (d/n)**(1/the[&#39;p&#39;])</code></pre>
+    return (d/n)**(1/options[&#39;p&#39;])</code></pre>
 </details>
 </dd>
 <dt id="data.DATA.half"><code class="name flex">
@@ -419,10 +413,10 @@ class DATA:
     def project(row):
         return {&#34;row&#34;: row, &#34;dist&#34;: cosine(dist(row, A), dist(row, B), c)}
 
-    if rows == None: rows = self.rows
-    some = many(rows,the[&#39;Sample&#39;])
+    if rows is None: rows = self.rows
+    some = many(rows,options[&#39;Sample&#39;])
     A = above or any(some)
-    B = self.around(A, some)[int(the[&#39;Far&#39;] * len(rows))][&#39;row&#39;]
+    B = self.around(A, some)[int(options[&#39;Far&#39;] * len(rows))][&#39;row&#39;]
     c = dist(A, B)
     left, right, mid = [], [], None
     for n, tmp in enumerate(sorted(list(map(project, rows)), key=lambda x: x[&#34;dist&#34;])):
@@ -464,7 +458,7 @@ class DATA:
 </summary>
 <pre><code class="python">def sway(self, rows = None, min = None, cols = None, above = None):
     if rows == None: rows = self.rows
-    min  = min or len(rows)**the[&#39;min&#39;]
+    min  = min or len(rows)**options[&#39;min&#39;]
     cols = cols or self.cols.x
     node = {&#34;data&#34;:self.clone(rows)}
     if len(rows) &gt; 2*min:
